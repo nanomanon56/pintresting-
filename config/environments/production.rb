@@ -83,5 +83,14 @@ Rails.application.configure do
 #note to set this to your actual host 
 config.action_mailer.default_url_options = { host: 'http://one11pintresting.herokuapp.com/', port: 3000 }
   # Do not dump schema after migrations.
+  config.paperclip_defaults = {
+  :storage => :s3,
+  :s3_credentials => {
+    :bucket => ENV['S3_BUCKET_NAME'],
+    :access_key_id => ENV['AWS_ACCESS_KEY_ID'],
+    :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY']
+  }
+}
   config.active_record.dump_schema_after_migration = false
 end
+
